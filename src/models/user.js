@@ -1,57 +1,72 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 
-const userSchema = new mongoose.Schema({
-    firstName:{
-        type: String,
-        required: true,
-        minLength: 2,
-        maxLength: 20,
-
+const userSchema = new mongoose.Schema(
+  {
+    firstName: {
+      type: String,
+      required: true,
+      minLength: 2,
+      maxLength: 20,
     },
-    lastName:{
-        type: String,
-        required: true
+    lastName: {
+      type: String,
+      required: true,
     },
-    email:{
-        type: String,
-        lowercase: true,
-        trim: true,
-        required: true,
-        unique: true,
-        
-    },
-    password:{
-        type: String,
-        required: true
-    },
-    gender:{
-        type: String,
-        required: true,
-        lowercae: true,
-        validate(value){
-            if(!['male','female','others'].includes(value.toLowerCase())){
-                throw new Error("Gender data is not valid")
-            }
+    email: {
+      type: String,
+      lowercase: true,
+      trim: true,
+      required: true,
+      unique: true,
+      validate(value) {
+        if (!validator.isEmail(value)) {
+          throw new Error("invalid email address");
         }
+      },
     },
-    age:{
-        type: Number,
-        min: 18,
+    password: {
+      type: String,
+      required: true,
+      validate(value) {
+        if (!validator.isStrongPassword(value)) {
+          throw new Error("Password is not strong");
+        }
+      },
     },
-    photoUrl:{
-        tpye: String,
-   
+    gender: {
+      type: String,
+      lowercae: true,
+      validate(value) {
+        if (!["male", "female", "others"].includes(value.toLowerCase())) {
+          throw new Error("Gender data is not valid");
+        }
+      },
     },
-    about:{
-        type: String,
-        default : "https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"
+    age: {
+      type: Number,
+      min: 18,
     },
-    skills:{
-        type: [String],
-    }
-},
-{
-    timestamps:true 
-});
+    about: {
+      type: String,
+    },
+    skills: {
+      type: [String],
+    },
+    photoURL: {
+      type: String,
+      default:
+        "https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png",
+      validate(value) {
+        if (!validator.isURL(value)) {
+          throw new Error("Photo url is not correct");
+        }
+      },
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 module.exports = mongoose.model("User", userSchema);
