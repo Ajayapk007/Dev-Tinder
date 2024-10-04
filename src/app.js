@@ -7,6 +7,8 @@ const bcrypt = require("bcrypt");
 const validator = require("validator");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
+const {userAuth} = require("./middlewares/auth");
+
 
 app.use(express.json());
 app.use(cookieParser());
@@ -42,11 +44,11 @@ app.post("/login", async (req, res) => {
     if (!user) {
       throw new Error("invalid credentials");
     }
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await user.validatePassowrd(password);
 
     if (isPasswordValid) {
       //create JWT Token
-      const token = await jwt.sign({ id: user.id }, "DEV@TINDER$343");
+      const token = await user.getJWT();
 
       //add token to cookies and send back response
       res.cookie("token", token);
@@ -59,27 +61,33 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/profile", async (req, res) => {
+app.get("/profile", userAuth, async (req, res) => {
   try {
-    const incomingCookies = req.cookies;
-    const { token } = incomingCookies;
-    if (!token) {
-      throw new Error("invalid Token");
-    }
-    // Validation check
-    const decoded = await jwt.verify(token, "DEV@TINDER$343");
-    const { id } = decoded;
-    
-    const user = await User.findById(id);
-    if (!user) {
-      throw new Error("user not found");
-    }
-    res.send(user);
+    const user = req.user;
+    res.send(user); 
   } catch (error) {
     res.status(401).send("Error: "+ error.message);
   }
 });
 
+app.post("/sendConnectionRequest", userAuth, async(req, res) =>{
+  res.send("sendConnectionRequest")
+});
+
+
+connectDB()
+  .then(() => {
+    console.log("connection to Database is successfull");
+    app.listen(8080, () => {
+      console.log("This server running on port no. 8080....");
+    });
+  })
+  .catch((e) => {
+    console.log("there is a problem in connecting to Database");
+  });
+
+
+  /*
 app.get("/feed", async (req, res) => {
   try {
     const usersList = await User.find({});
@@ -157,15 +165,4 @@ app.delete("/user", async (req, res) => {
   } catch (error) {
     res.status(404).send("error occured");
   }
-});
-
-connectDB()
-  .then(() => {
-    console.log("connection to Database is successfull");
-    app.listen(8080, () => {
-      console.log("This server running on port no. 8080....");
-    });
-  })
-  .catch((e) => {
-    console.log("there is a problem in connecting to Database");
-  });
+}); */
