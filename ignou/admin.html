@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .Ledhub-box {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        h1 {
+            color: red;
+            text-transform: uppercase;
+            animation: heartBeat 1s infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .logo {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .line {
+            height: 2px;
+            background-color: yellow;
+            margin-top: 10px;
+        }
+
+        .about-us {
+            margin: 50px auto;
+            width: 80%;
+            text-align: left;
+        }
+
+        .about-us h1 {
+            color: #333;
+            text-align: center;
+            font-size: 2.5em;
+        }
+
+        .about-us p {
+            font-size: 1.1em;
+            line-height: 1.8em;
+        }
+
+        #rating h3 {
+            text-align: center;
+            margin: 20px;
+        }
+
+        i.fa {
+            color: gold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-us {
+                width: 90%;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Logo and Title -->
+    <div class="Ledhub-box">
+        <h1 class="animate infinite heartBeat">LEDHUB.COM</h1>
+    </div>
+
+    <div class="logo">
+        <img src="logo.PNG" alt="Logo">
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="Feedback.html"><i class="fa fa-comment"></i> Feedback</a></li>
+            <li><a href="ContactUs.html"><i class="fa fa-phone"></i> Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="line"></div>
+
+    <!-- About Us Content -->
+    <div class="about-us">
+        <h1>ABOUT US</h1>
+        <p id="abt-para">
+            Ledhub.com is an e-commerce website for people looking to buy unique and amazing LED lighting products for home, office, and party decorations. Our platform offers various lighting products like strip lights, bulbs, tube lights, and more, providing a user-friendly interface for easy navigation. We strive to offer quality products at affordable prices, ensuring user satisfaction with both our prices and service. Ledhub.com is designed to cater to users of all age groups, making it simple to find and purchase products in just a few minutes. Additionally, Ledhub.com offers easy cancellation and refunds for its users. Your data privacy is important to us, and we provide top-notch security to protect your information.<br><br>
+            
+            Here's what makes us stand out:<br><br>
+            1. We work tirelessly to be a trusted brand.<br>
+            2. India’s best online site for LED products at low prices.<br>
+            3. Exclusive and unique LED products.<br>
+            4. Free delivery and 24-hour shipping.<br>
+            5. Secure and hassle-free payment process.<br>
+        </p>
+    </div>
+
+    <!-- Ratings Section -->
+    <div id="rating">
+        <h3>Services rating: 4.7:
+            <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+        </h3>
+    </div>
+    <div id="rating">
+        <h3>Security rating: 4.9:
+            <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+        </h3>
+    </div>
+    <div id="rating">
+        <h3>Review rating: 4.1:
+            <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+        </h3>
+    </div>
+    <div id="rating">
+        <h3>Register rating: 3.4:
+            <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+        </h3>
+    </div>
+
+</body>
+</html>
