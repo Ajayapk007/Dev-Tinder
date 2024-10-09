@@ -20,3 +20,10 @@ Get /request/received
 Status/ resquest:  ignore or interested, accepeted, rejected  
 
 Get /feed/getprofilesOftherpeople
+
+
+//////////////pagination
+
+/feed?page=1&limit=10     !1 to 10
+/feed?page=2&limit=10     !11 to 20
+/feed?page=3&limit=10     !11 to 20
