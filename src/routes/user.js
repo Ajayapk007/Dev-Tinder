@@ -5,7 +5,7 @@ const User = require("../models/user");
 const { ObjectId } = require('mongoose').Types;
 
 const userRouter = express.Router();
-const USER_SAFE_DATA = "_id firstName lastName skills about photoUrl";
+const USER_SAFE_DATA = "_id firstName lastName skills about photoURL";
 
 userRouter.get("/user/requests/received", userAuth, async (req, res) => {
   // get the all pending connection request

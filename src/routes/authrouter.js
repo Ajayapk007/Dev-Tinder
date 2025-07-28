@@ -45,7 +45,7 @@ appRouter.post("/login", async (req, res) => {
   
         //add token to cookies and send back response
         res.cookie("token", token);
-        res.send("login successfully");
+        res.send(user);
       } else {
         throw new Error("invalid credential ");
       }
