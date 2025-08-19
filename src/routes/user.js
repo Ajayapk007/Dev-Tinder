@@ -34,7 +34,7 @@ userRouter.get("/user/connection", userAuth, async (req, res) => {
       .populate("toUserId", USER_SAFE_DATA);
     res.json({
       message: {
-        inof: allconnection,
+        info: allconnection,
       },
     });
   } catch (error) {

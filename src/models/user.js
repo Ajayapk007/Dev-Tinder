@@ -65,26 +65,39 @@ const userSchema = new mongoose.Schema(
         }
       },
     },
+    postURL: {
+      type: [String],
+      default: [
+        "https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png",
+      ],
+      validate: {
+        validator: function (urls) {
+          return urls.every((url) => validator.isURL(url));
+        },
+        message: (props) =>
+          `One or more items in ${props.value} are not valid URLs.`,
+      },
+    },
   },
   {
     timestamps: true,
   }
 );
 
-userSchema.index({firstName: 1, lastName: 1})
+userSchema.index({ firstName: 1, lastName: 1 });
 
-userSchema.methods.getJWT = async function(){
+userSchema.methods.getJWT = async function () {
   const user = this;
-  const token = await jwt.sign({id: user.id}, "DEV@TINDER$343",{
-    expiresIn: "7d"
-  }); 
+  const token = await jwt.sign({ id: user.id }, "DEV@TINDER$343", {
+    expiresIn: "7d",
+  });
   return token;
-} 
+};
 
-userSchema.methods.validatePassowrd = async function(password){
+userSchema.methods.validatePassowrd = async function (password) {
   const user = this;
-  
-  return  await bcrypt.compare(password, user.password);
-}
+
+  return await bcrypt.compare(password, user.password);
+};
 
 module.exports = mongoose.model("User", userSchema);
