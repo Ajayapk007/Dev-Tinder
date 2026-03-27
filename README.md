@@ -1,4 +1,4 @@
-# Dev-Tinder Backend 🚀
+# Dev Tinder Backend using Nodejs🚀
 
 ## 📌 Overview
 
@@ -123,7 +123,7 @@ I learned Node.js through the **Namaste Node.js course by Akshay Saini**
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/Ajayapk007/devTinder-backend.git
+git clone https://github.com/Ajayapk007/devT-inder.git
 cd devTinder-backend
 ```
 
